@@ -44,7 +44,7 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 
 
 ## Database Design
-![alt text](../RecipeShelf.jpg)
+![Database Design](RecipeShelf.jpg)
 
 ## Routes
 
