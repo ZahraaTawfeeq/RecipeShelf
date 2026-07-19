@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <h1>Add Recipe</h1>
+        <form action="/recipes/new" method="post" enctype="multipart/form-data">
+            <label for="name">Recipe Name:</label>
+            <input required type="text" name="name" id="name" placeholder="Add Recipe's name...">
+            <br><br>
+            <label for="description">Description:</label>
+            <textarea type="text" name="description" id="description" placeholder="Add Description..."></textarea>
+            <br><br>
+            <label for="cuisine">cuisine:</label>
+            <select required type="text" name="cuisine" id="cuisine">
+                <option value="" disabled selected>Choose cuisine</option>
+                <% for (let onecuisine of allCuisines){%>
+                    <option value="<%=onecuisine.name%>">
+                        <%=onecuisine.name%>
+                    </option>
+                    <%}%>
+            </select>
+            <br><br>
+            <label for="category">category:</label>
+            <select required type="text" name="category" id="category">
+                <option value="" disabled selected>Choose category</option>
+                <% for (let oneCategory of allCategories){%>
+                    <option value="<%=oneCategory._id%>">
+                        <%=oneCategory.name%>
+                    </option>
+                    <%}%>
+            </select>
+            <br><br>
+            <label for="serving">serving:</label>
+            <input required type="number" name="serving" id="serving" placeholder="Add serving...">
+            <br><br>
+            <label>Ingredients:</label>
+
+            <div class="ingredients-list">
+                <% for (let oneIng of allIngredients) { %>
+                    <div class="ingredient-item">
+                        <input type="checkbox" id="<%= oneIng._id %>" name="ingredients" value="<%= oneIng._id %>">
+                        <label for="ingredient-<%= oneIng._id %>">
+                            <%= oneIng.name %>
+                        </label>
+                    </div>
+                    <% } %>
+            </div>
+            <br><br>
+            <label for="instructions">instructions:</label>
+            <input required type="text" name="instructions" id="instructions" placeholder="Add instructions..."></input>
+            <br><br>
+            <label for="cookTime">cookTime:</label>
+            <input type="number" name="cookTime" id="cookTime" placeholder="Add cookTime...">
+            <br><br>
+            <label for="prepTime">prepTime:</label>
+            <input type="number" name="prepTime" id="prepTime" placeholder="Add prepTime...">
+            <br><br>
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image">
+            <br><br>
+            <button>Add</button>
+        </form>
+</body>
+
+</html>

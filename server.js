@@ -21,7 +21,6 @@ const recipeController = require("./controllers/recipeController.js");
 const chatController = require("./controllers/chatController.js");
 
 
-
 const dns = require('dns')
 dns.setServers(['8.8.8.8', '1.1.1.1'])
 
@@ -50,6 +49,7 @@ app.use(
 app.use(passUserToView)
 
 
+
 // Routes
 app.use('/auth', authController)
 app.use('/', indexController)
@@ -57,8 +57,6 @@ app.use('/ingredients', ingredientController)
 app.use('/categories', categoryController)
 app.use('/recipes', recipeController)
 app.use('/chats', chatController)
-
-
 
 
 

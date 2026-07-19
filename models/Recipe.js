@@ -7,22 +7,21 @@ const reviewSchema = mongoose.Schema({
 
 const recipeSchema = mongoose.Schema({
     name: { type: String, required: true },
-    description: { type: String, minLength: 20 },
-    instructions: { type: String, required: true, minLength: 20 },
-    serving: { type: Number, min: 1 },
+    description: { type: String, minLength: 10 },
+    instructions: { type: String, required: true, minLength: 10 },
+    serving: { type: Number, min: 1, required: true },
     cookTime: { type: Number },
     prepTime: { type: String },
-    cuisine: { type: String, enum: [] },
-    notes: { type: String, minLength: 5, maxLength: 500 },
-    isFav: { type: Boolean },
+    cuisine: { type: String, required: true },
+    isFav: { type: Boolean, default: false },
     review: { type: [reviewSchema] },
     image: { type: String },
-    isHidden: { type: Boolean },
+    isHidden: { type: Boolean, default: false },
     ingredients: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Ingredients'
     }],
-    Category: {
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
     },
