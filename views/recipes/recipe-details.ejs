@@ -110,6 +110,32 @@
                                     </p>
 
                                     <br>
+
+                                    <h2>Add Review</h2>
+
+                                    <form action="/recipes/review/<%=pickedRecipe._id%>" method="post">
+                                        <label for="review">Your Thoughts:</label>
+                                        <input id="review" name="review" type="text">
+
+                                        <label for="rating">Rating</label>
+                                        <input name="rating" id="rating" type="number" min="1" max="5">
+
+                                        <button>Add Review</button>
+                                    </form>
+
+                                    <% for (let oneReview of pickedRecipe.review) {%>
+                                        <p>
+                                            <%= oneReview.review %>
+                                        </p>
+                                        <p>
+                                            <%for (i=0;i<oneReview.rating;i++){%>
+                                                ⭐
+                                                    <%}%>
+                                        </p>
+                                        <p>By: <%= oneReview.creator.username%>
+                                        </p>
+                                        <hr>
+                                        <% } %>
 </body>
 
 </html>

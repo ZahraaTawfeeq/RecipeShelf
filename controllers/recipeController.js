@@ -82,7 +82,7 @@ router.get('/new-recipe', isSignedIn, async (req, res) => {
 router.get('/recipe-details/:id', async (req, res) => {
     try {
         // get the picked recipe by ad and populate references
-        const pickedRecipe = await Recipe.findById((req.params.id)).populate('category creator ingredients favorites')
+        const pickedRecipe = await Recipe.findById((req.params.id)).populate('category creator ingredients favorites review.creator')
 
         // go to recipe details page
         res.render('recipes/recipe-details.ejs', { pickedRecipe, user: req.session.user._id })
@@ -213,6 +213,20 @@ router.post('/:id/unFav', isSignedIn, async (req, res) => {
         console.log(`Cannot remove favourite: ${err}`)
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
     }
+})
+
+router.post('/review/:id', async (req, res) => {
+
+    const foundRecipe = await Recipe.findById(req.params.id)
+
+    const newReview = {
+        review: req.body.review,
+        rating: req.body.rating,
+        creator: req.body.creator = req.session.user._id
+    }
+    foundRecipe.review.push(newReview)
+    foundRecipe.save()
+    res.redirect(`/recipes/recipe-details/${req.params.id}`)
 })
 
 //--------- PUT ---------//

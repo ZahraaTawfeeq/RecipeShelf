@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 
 const reviewSchema = mongoose.Schema({
     rating: { type: Number },
-    review: { type: String, maxLength: 200 }
+    review: { type: String, maxLength: 200 },
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 
 const recipeSchema = mongoose.Schema({
@@ -18,7 +22,7 @@ const recipeSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    review: { type: [reviewSchema] },
+    review: [reviewSchema] ,
     image: { type: String },
     isHidden: { type: Boolean, default: false },
     ingredients: [{
