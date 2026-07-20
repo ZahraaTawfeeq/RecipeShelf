@@ -52,9 +52,9 @@ router.get('/all-recipes', async (req, res) => {
     try {
         // get all recipes that is not hidden
         const allRecipes = await Recipe.find({ isHidden: false }).populate('creator cuisine category')
-
+        const category = await Category.find({})
         // go to all recipes page
-        res.render('recipes/all-recipes.ejs', { allRecipes })
+        res.render('recipes/all-recipes.ejs', { allRecipes, category })
     }
     catch (err) {
         console.log(`Cannot get all recipes: ${err}`)
@@ -143,6 +143,21 @@ router.get('/search-by-ingredient', async (req, res) => {
 
     } catch (err) {
         console.log(`Cannot Search: ${err}`)
+        res.redirect('/recipes/all-recipes')
+    }
+})
+
+router.get('/filter-by-category', async (req, res) => {
+    try {
+        const allRecipes = await Recipe.find({
+            category: req.query.filter
+        })
+
+        const category = await Category.find({})
+
+        res.render('recipes/all-recipes.ejs', { allRecipes, category })
+    } catch (err) {
+        console.log(`Cannot filter by category: ${err}`)
         res.redirect('/recipes/all-recipes')
     }
 })

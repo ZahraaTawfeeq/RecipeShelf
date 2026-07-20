@@ -14,8 +14,8 @@
             <%=user.username%>
         </h1>
         <div id="sidebar">
-            <a href=""> <button id="recipes">Recipes</button></a>
-            <a href=""> <button id="favorites">Favorites</button></a>
+            <button id="recipes">Recipes</button>
+            <button id="favorites">Favorites</button>
         </div>
         <div id="sections">
             <section id="recipes-section">
@@ -43,6 +43,18 @@
                                 </p>
                                 <%}%>
                             </a>
+            </section>
+            <section id="hidden-section">
+                <h1>Hidden Recipes</h1>
+                <%if (hiddenRecipe.length===0){%>
+                    <p>You dont have hidden recipes!</p>
+                    <%}%>
+                        <%for (let oneHidden of hiddenRecipe){%>
+                            <a href="/recipes/recipe-details/<%= oneHidden._id %>">
+                                <p>
+                                    <%=oneHidden.name%>
+                                </p>
+                                <%}%>
             </section>
         </div>
 </body>

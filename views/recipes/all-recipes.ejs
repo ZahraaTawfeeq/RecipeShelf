@@ -16,6 +16,21 @@
             <input type="text" name="search" id="search" placeholder="Search by ingredient...">
             <button>Search</button>
         </form>
+
+
+        <form action="/recipes/filter-by-category" method="get">
+            <select name="filter">
+                <option disabled selected>Choose category</option>
+
+                <% for (let oneCategory of category) { %>
+                    <option value="<%= oneCategory._id %>">
+                        <%= oneCategory.name %>
+                    </option>
+                    <% } %>
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
         <form action="/recipes/all-recipes" method="get">
             <button>clear</button>
         </form>
