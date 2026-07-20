@@ -11,12 +11,28 @@
     <%- include('../partials/navbar') %>
 
         <h1>All Recipes</h1>
-        <%for (let oneRecipe of allRecipes){%>
-            <p>
-                <%=oneRecipe.name%>
-            </p>
-            <img src="/images/<%=oneRecipe.image%>" alt="Recipe Image">
-            <%}%>
+
+        <form action="/recipes/search-by-ingredient" method="get">
+            <input type="text" name="search" id="search" placeholder="Search by ingredient...">
+            <button>Search</button>
+        </form>
+        <form action="/recipes/all-recipes" method="get">
+            <button>clear</button>
+        </form>
+        <% if (allRecipes.length===0) { %>
+            <p>Theres no recipes with that ingredient</p>
+            <% } else { %>
+                <% for (let oneRecipe of allRecipes) { %>
+                    <a href="/recipes/recipe-details/<%= oneRecipe._id %>">
+                        <p>
+                            <%= oneRecipe.name %>
+                        </p>
+                        <img src="/images/<%= oneRecipe.image %>" alt="Recipe Image"
+                            style="width: 90px; height: 120px; object-fit: cover;">
+                    </a>
+                    <hr>
+                    <% } %>
+                        <% } %>
 </body>
 
 </html>

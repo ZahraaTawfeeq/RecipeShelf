@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <h1>Edit Recipe</h1>
+
+        <form action="/recipes/<%= pickedRecipe._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+
+            <!-- Name -->
+            <label>Name</label>
+            <input type="text" name="name" value="<%= pickedRecipe.name %>" required>
+            <br><br>
+
+            <!-- Description  -->
+            <label>Description</label>
+            <textarea name="description"><%= pickedRecipe.description %></textarea>
+            <br><br>
+
+            <!-- Cuisine -->
+            <label>Cuisine</label>
+            <select name="cuisine" required>
+                <% for(let oneCuisine of allCuisines){%>
+                    <option value="<%= oneCuisine.name %>" <%=pickedRecipe.cuisine==oneCuisine.name ? "selected" : "" %>
+                        >
+                        <%= oneCuisine.name %>
+                    </option>
+                    <% }%>
+            </select>
+            <br><br>
+
+            <!-- Category -->
+            <label>Category</label>
+
+            <select name="category" required>
+                <% for(let oneCategory of allCategories){ %>
+                    <option value="<%= oneCategory._id %>"
+                        <%=pickedRecipe.category._id.toString()==oneCategory._id.toString() ? "selected" : "" %>>
+                        <%= oneCategory.name %>
+                    </option>
+                    <% } %>
+            </select>
+            <br><br>
+
+            <!-- Serving -->
+            <label>Serving</label>
+            <input type="number" name="serving" value="<%= pickedRecipe.serving %>">
+            <br><br>
+
+            <!-- Ingredients -->
+            <label>Ingredients</label>
+            <% allIngredients.forEach(oneIng=>{ %>
+                <div>
+                    <input type="checkbox" name="ingredients" value="<%= oneIng._id %>"
+                        <%=pickedRecipe.ingredients.some(ing=> ing._id.equals(oneIng._id)) ? "checked" : "" %>>
+                    <%= oneIng.name %>
+                </div>
+                <% }) %>
+                    <br>
+
+                    <!-- Instructions -->
+                    <label>Instructions</label>
+                    <textarea name="instructions"><%= pickedRecipe.instructions %></textarea>
+                    <br><br>
+
+                    <!-- Prep Time -->
+                    <label>Prep Time</label>
+                    <input type="number" name="prepTime" value="<%= pickedRecipe.prepTime %>">
+                    <br><br>
+
+                    <!-- Cook Time -->
+                    <label>Cook Time</label>
+                    <input type="number" name="cookTime" value="<%= pickedRecipe.cookTime %>">
+                    <br><br>
+
+                    <!-- Image -->
+                    <% if (pickedRecipe.image) { %>
+                        <img src="/images/<%= pickedRecipe.image %>" width="200">
+                        <br><br>
+                        <% } %>
+                            <label>Update Image?</label>
+                            <input type="file" name="image">
+                            <br><br>
+
+                            <!-- Update -->
+                            <button>Update Recipe</button>
+        </form>
+</body>
+
+</html>

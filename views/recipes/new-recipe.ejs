@@ -11,12 +11,17 @@
     <%- include('../partials/navbar') %>
         <h1>Add Recipe</h1>
         <form action="/recipes/new" method="post" enctype="multipart/form-data">
+            <!-- Name -->
             <label for="name">Recipe Name:</label>
             <input required type="text" name="name" id="name" placeholder="Add Recipe's name...">
             <br><br>
+
+            <!-- Description -->
             <label for="description">Description:</label>
             <textarea type="text" name="description" id="description" placeholder="Add Description..."></textarea>
             <br><br>
+
+            <!-- Cuisine -->
             <label for="cuisine">cuisine:</label>
             <select required type="text" name="cuisine" id="cuisine">
                 <option value="" disabled selected>Choose cuisine</option>
@@ -27,6 +32,8 @@
                     <%}%>
             </select>
             <br><br>
+
+            <!-- Category -->
             <label for="category">category:</label>
             <select required type="text" name="category" id="category">
                 <option value="" disabled selected>Choose category</option>
@@ -37,14 +44,18 @@
                     <%}%>
             </select>
             <br><br>
+
+            <!-- Serving -->
             <label for="serving">serving:</label>
             <input required type="number" name="serving" id="serving" placeholder="Add serving...">
             <br><br>
+
+            <!-- Ingredients -->
             <label>Ingredients:</label>
 
-            <div class="ingredients-list">
+            <div>
                 <% for (let oneIng of allIngredients) { %>
-                    <div class="ingredient-item">
+                    <div>
                         <input type="checkbox" id="<%= oneIng._id %>" name="ingredients" value="<%= oneIng._id %>">
                         <label for="ingredient-<%= oneIng._id %>">
                             <%= oneIng.name %>
@@ -53,18 +64,28 @@
                     <% } %>
             </div>
             <br><br>
+
+            <!-- Instructions -->
             <label for="instructions">instructions:</label>
             <input required type="text" name="instructions" id="instructions" placeholder="Add instructions..."></input>
             <br><br>
-            <label for="cookTime">cookTime:</label>
+
+            <!-- Cook Time -->
+            <label for="cookTime">Cook Time:</label>
             <input type="number" name="cookTime" id="cookTime" placeholder="Add cookTime...">
             <br><br>
-            <label for="prepTime">prepTime:</label>
+
+            <!-- Prep Time -->
+            <label for="prepTime">Prep Time:</label>
             <input type="number" name="prepTime" id="prepTime" placeholder="Add prepTime...">
             <br><br>
+
+            <!-- Image -->
             <label for="image">Image:</label>
             <input type="file" name="image" id="image">
             <br><br>
+
+            <!-- Submit -->
             <button>Add</button>
         </form>
 </body>

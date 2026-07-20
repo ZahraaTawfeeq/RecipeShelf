@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Recipe Shelf</title>
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
 </head>
+
 <body>
     <%- include('./partials/navbar') %>
+        <section>
+            <div>
+                <h1>🍳 Welcome to Recipe Shelf</h1>
+                <p>
+                    Discover delicious recipes, save your favorites,
+                    and create your own digital cookbook.
+                </p>
+                <div>
+                    <a href="/recipes/all-recipes">
+                        <button>Explore Recipes</button>
+                    </a>
+                    <a href="/recipes/new-recipe">
+                        <button>Create Recipe</button>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <h1>Welcome to my Website</h1>
+        <section>
+            <div>
+                <h2>📖 Browse Recipes</h2>
+                <p>
+                    Find recipes from different cuisines and discover
+                    new dishes every day.
+                </p>
+            </div>
+
+            <div>
+                <h2>🥗 Create Your Own</h2>
+                <p>
+                    Add your personal recipes and build your own
+                    digital cookbook.
+                </p>
+            </div>
+
+            <div>
+                <h2>⭐ Save Favorites</h2>
+                <p>
+                    Keep your favorite meals organized in one place.
+                </p>
+            </div>
+        </section>
 </body>
+
 </html>

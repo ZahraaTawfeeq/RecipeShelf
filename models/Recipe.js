@@ -13,13 +13,17 @@ const recipeSchema = mongoose.Schema({
     cookTime: { type: Number },
     prepTime: { type: String },
     cuisine: { type: String, required: true },
-    isFav: { type: Boolean, default: false },
+    // isFav: { type: Boolean, default: false },
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     review: { type: [reviewSchema] },
     image: { type: String },
     isHidden: { type: Boolean, default: false },
     ingredients: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Ingredients'
+        ref: 'Ingredient'
     }],
     category: {
         type: mongoose.Schema.Types.ObjectId,
