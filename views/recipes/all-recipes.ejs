@@ -4,50 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <%- include('../partials/navbar') %>
+        <main class="recipes-page">
+            <h1>All Recipes</h1>
+            <div class="filter-container">
+                <form action="/recipes/filter" method="get" class="filter-form">
+                    <input type="text" name="ingredient" placeholder="Search by ingredient">
+                    <select name="category">
+                        <option value="">All Categories</option>
+                        <% for (let oneCategory of category) { %>
+                            <option value="<%= oneCategory._id %>">
+                                <%= oneCategory.name %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <select name="cuisine">
+                        <option value="">All Cuisines</option>
+                        <% for (let oneCuisine of cuisines) { %>
+                            <option value="<%= oneCuisine.name %>">
+                                <%= oneCuisine.name %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <button type="submit">Search</button>
 
-        <h1>All Recipes</h1>
+                </form>
+                <form action="/recipes/all-recipes" method="get">
+                    <button class="clear-btn">Clear</button>
+                </form>
 
-        <form action="/recipes/search-by-ingredient" method="get">
-            <input type="text" name="search" id="search" placeholder="Search by ingredient...">
-            <button>Search</button>
-        </form>
+            </div>
+            <% if (allRecipes.length===0) { %>
+                <div class="no-recipes">
+                    <p>No Recipes :(</p>
+                </div>
+                <% } else { %>
+                    <div class="recipes-container">
+                        <% for (let oneRecipe of allRecipes) { %>
+                            <a href="/recipes/recipe-details/<%= oneRecipe._id %>" class="recipe-card">
 
+                                <div class="recipe-image">
+                                    <img src="/images/<%= oneRecipe.image %>" alt="Recipe Image">
+                                </div>
 
-        <form action="/recipes/filter-by-category" method="get">
-            <select name="filter">
-                <option disabled selected>Choose category</option>
-
-                <% for (let oneCategory of category) { %>
-                    <option value="<%= oneCategory._id %>">
-                        <%= oneCategory.name %>
-                    </option>
+                                <div class="recipe-info">
+                                    <h2>
+                                        <%= oneRecipe.name %>
+                                    </h2>
+                                </div>
+                            </a>
+                            <% } %>
+                    </div>
                     <% } %>
-            </select>
-
-            <button type="submit">Filter</button>
-        </form>
-        <form action="/recipes/all-recipes" method="get">
-            <button>clear</button>
-        </form>
-        <% if (allRecipes.length===0) { %>
-            <p>Theres no recipes with that ingredient</p>
-            <% } else { %>
-                <% for (let oneRecipe of allRecipes) { %>
-                    <a href="/recipes/recipe-details/<%= oneRecipe._id %>">
-                        <p>
-                            <%= oneRecipe.name %>
-                        </p>
-                        <img src="/images/<%= oneRecipe.image %>" alt="Recipe Image"
-                            style="width: 90px; height: 120px; object-fit: cover;">
-                    </a>
-                    <hr>
-                    <% } %>
-                        <% } %>
+        </main>
 </body>
 
 </html>

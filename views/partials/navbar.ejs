@@ -1,15 +1,19 @@
-<nav>
-    <div>
-        <h3> 🍳 Recipe Shelf</h3>
-        <a href="/">🏠</a>
-        <a href="/recipes/all-recipes">🍽️</a>
+<nav class="navbar">
+    <div class="logo">
+        <span></span><a href="/"> Recipe Shelf
+        </a></span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/recipes/all-recipes">Recipes</a>
+
         <% if (user) { %>
-            <a href="/recipes/my-favorites">❤️</a>
-            <a href="/auth/profile">👤</a>
-            <a href="/auth/sign-out">🚪</a>
+            <!-- <a href="/recipes/my-favorites">Favorites</a> -->
+            <a href="/auth/profile">Profile</a>
+            <a href="/auth/sign-out">Sign Out</a>
             <% } else { %>
-                <a href="/auth/sign-up">📝 Sign Up</a>
-                <a href="/auth/sign-in">🔑 Login</a>
+                <a href="/auth/sign-up">Sign Up</a>
+                <a href="/auth/sign-in">Login</a>
                 <% } %>
     </div>
 </nav>

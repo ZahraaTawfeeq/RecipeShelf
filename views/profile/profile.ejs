@@ -5,58 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <%- include('../partials/navbar') %>
+        <div class="profile-page">
 
-        <h1>
-            <%=user.username%>
-        </h1>
-        <div id="sidebar">
-            <button id="recipes">Recipes</button>
-            <button id="favorites">Favorites</button>
-        </div>
-        <div id="sections">
-            <section id="recipes-section">
-                <h1>My Recipes</h1>
-                <%if (allUsersRecipes.length===0){%>
-                    <p>You dont have recipes!</p>
-                    <%}%>
-                        <%for (let oneRecipe of allUsersRecipes){%>
-                            <a href="/recipes/recipe-details/<%= oneRecipe._id %>">
-                                <p>
-                                    <%=oneRecipe.name%>
-                                </p>
+            <h1>
+                <%=user.username%>
+            </h1>
+            <div id="sidebar">
+                <button id="recipes">Recipes</button>
+                <button id="favorites">Favorites</button>
+                <button id="hidden">Hidden</button>
+            </div>
+            <div id="sections">
+                <section id="recipes-section">
+                    <h1>My Recipes</h1>
+                    <%if (allUsersRecipes.length===0){%>
+                        <p>You dont have recipes!</p>
+                        <%}%>
+                            <%for (let oneRecipe of allUsersRecipes){%>
+                                <a href="/recipes/recipe-details/<%= oneRecipe._id %>">
+                                    <p>
+                                        <%=oneRecipe.name%>
+                                    </p>
+                                </a>
                                 <%}%>
-                            </a>
-            </section>
-            <section id="favorites-section">
-                <h1>My Favorites</h1>
-                <%if (userFav.length===0){%>
-                    <p>You dont have favourited recipe!</p>
-                    <%}%>
-                        <%for (let oneFav of userFav){%>
-                            <a href="/recipes/recipe-details/<%= oneFav._id %>">
-                                <p>
-                                    <%=oneFav.name%> By: <%=oneFav.creator.username%>
-                                </p>
-                                <%}%>
-                            </a>
-            </section>
-            <section id="hidden-section">
-                <h1>Hidden Recipes</h1>
-                <%if (hiddenRecipe.length===0){%>
-                    <p>You dont have hidden recipes!</p>
-                    <%}%>
-                        <%for (let oneHidden of hiddenRecipe){%>
-                            <a href="/recipes/recipe-details/<%= oneHidden._id %>">
-                                <p>
-                                    <%=oneHidden.name%>
-                                </p>
-                                <%}%>
-            </section>
+
+                </section>
+                <section id="favorites-section">
+                    <h1>My Favorites</h1>
+                    <%if (userFav.length===0){%>
+                        <p>You dont have favourited recipe!</p>
+                        <%}%>
+                            <% for (let oneFav of userFav){%>
+                                <a href="/recipes/recipe-details/<%= oneFav._id %>">
+                                    <p>
+                                        <%= oneFav.name %> By: <%= oneFav.creator.username %>
+                                    </p>
+                                </a>
+                                <% } %>
+                </section>
+                <section id="hidden-section">
+                    <h1>Hidden Recipes</h1>
+                    <%if (hiddenRecipe.length===0){%>
+                        <p>You dont have hidden recipes!</p>
+                        <%}%>
+                            <% for (let oneHidden of hiddenRecipe){%>
+                                <a href="/recipes/recipe-details/<%= oneHidden._id %>">
+                                    <p>
+                                        <%= oneHidden.name %>
+                                    </p>
+                                </a>
+                                <% } %>
+                </section>
+            </div>
         </div>
 </body>
+<script>
+    const sections = document.querySelectorAll("#sections section");
+
+    function show(id) {
+        sections.forEach(section => section.style.display = "none");
+        document.getElementById(id).style.display = "block";
+    }
+
+    document.getElementById("recipes").onclick = () => show("recipes-section");
+    document.getElementById("favorites").onclick = () => show("favorites-section");
+    document.getElementById("hidden").onclick = () => show("hidden-section");
+</script>
 
 </html>

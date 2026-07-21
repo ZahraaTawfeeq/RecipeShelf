@@ -5,12 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Shelf</title>
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <%- include('./partials/navbar') %>
-        <section>
+        <section class="hero">
+            <div class="videos">
+                <video autoplay muted loop playsinline>
+                    <source src="/videos/homevideo.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="hero-content">
+                <h1>Welcome to Recipe Shelf</h1>
+                <p>Discover delicious recipes from around the world.</p>
+            </div>
+        </section>
+        <!-- <section id="motion-section">
             <div>
                 <h1>🍳 Welcome to Recipe Shelf</h1>
                 <p>
@@ -51,7 +63,7 @@
                     Keep your favorite meals organized in one place.
                 </p>
             </div>
-        </section>
+        </section> -->
 </body>
 
 </html>

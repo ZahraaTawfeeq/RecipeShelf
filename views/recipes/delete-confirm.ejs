@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete?</title>
+        <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>are you sure you want to delete this recipe? </h1>
+    <form action="/recipes/all-recipes" method="get">
+        <button>No</button>
+    </form>
+    <form action="/recipes/<%= currentRecipe._id %>?_method=DELETE" method="post">
+        <button>Yes</button>
+    </form>
+</body>
+
+</html>

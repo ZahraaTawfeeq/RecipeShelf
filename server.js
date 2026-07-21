@@ -59,7 +59,6 @@ app.use('/recipes', recipeController)
 app.use('/chats', chatController)
 
 
-
 // connect to database and listen on Port 3000
 async function startServer() {
   const PORT = process.env.PORT || 3000;

@@ -54,7 +54,11 @@ router.get('/all-recipes', async (req, res) => {
         const allRecipes = await Recipe.find({ isHidden: false }).populate('creator cuisine category')
         const category = await Category.find({})
         // go to all recipes page
-        res.render('recipes/all-recipes.ejs', { allRecipes, category })
+        res.render('recipes/all-recipes.ejs', {
+            allRecipes,
+            category,
+            cuisines
+        })
     }
     catch (err) {
         console.log(`Cannot get all recipes: ${err}`)
@@ -119,49 +123,52 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
         res.redirect('recipes/all-recipes')
     }
 })
-
-// get searched recipes
-router.get('/search-by-ingredient', async (req, res) => {
+router.get('/filter', async (req, res) => {
     try {
-        // get the ingredients entered in the search input from Ingredients
-        const ingredient = await Ingredient.findOne({
-            name: {
-                $regex: req.query.search,
-                $options: "i"
+        const filter = {}
+
+        if (req.query.category) filter.category = req.query.category
+        if (req.query.cuisine) filter.cuisine = req.query.cuisine
+
+        if (req.query.ingredient) {
+            const ingredient = await Ingredient.findOne({
+                name: {
+                    $regex: req.query.ingredient,
+                    $options: "i"
+                }
+            })
+
+            if (!ingredient) {
+                return res.render("recipes/all-recipes.ejs", {
+                    allRecipes: [],
+                    category: await Category.find({}),
+                    cuisines,
+                })
             }
-        })
-        // if theres no such ingredient return null
-        if (!ingredient) {
-            return res.render('recipes/all-recipes.ejs', { allRecipes: [] })
+
+            filter.ingredients = ingredient._id
         }
-        // get the recipes that has this ingredient
-        const allRecipes = await Recipe.find({
-            ingredients: ingredient._id
+        console.log(filter)
+        const allRecipes = await Recipe.find(filter)
+            .populate("category ingredients creator")
+
+        res.render("recipes/all-recipes.ejs", {
+            allRecipes,
+            category: await Category.find({}),
+            cuisines,
         })
-        // get all recipes page with that ingredient
-        res.render('recipes/all-recipes.ejs', { allRecipes })
 
     } catch (err) {
-        console.log(`Cannot Search: ${err}`)
-        res.redirect('/recipes/all-recipes')
+        console.log(err)
+        res.redirect("/recipes/all-recipes")
     }
 })
 
-router.get('/filter-by-category', async (req, res) => {
-    try {
-        const allRecipes = await Recipe.find({
-            category: req.query.filter
-        })
-
-        const category = await Category.find({})
-
-        res.render('recipes/all-recipes.ejs', { allRecipes, category })
-    } catch (err) {
-        console.log(`Cannot filter by category: ${err}`)
-        res.redirect('/recipes/all-recipes')
-    }
+router.get('/delete-confirm/:id', isSignedIn, async (req, res) => {
+    const currentRecipe = await Recipe.findById(req.params.id)
+    console.log(currentRecipe)
+    res.render('recipes/delete-confirm.ejs', { currentRecipe })
 })
-
 //--------- POST ---------//
 
 // post new recipe
@@ -186,7 +193,7 @@ router.post('/new', isSignedIn, upload.single("image"), async (req, res) => {
         await Recipe.create(newRecipe)
 
         // redirect to home
-        res.redirect('/')
+        res.redirect('/recipes/all-recipes')
     } catch (err) {
         console.log(`Cannot add the new recipe: ${err}`)
         res.redirect('/')
@@ -292,6 +299,12 @@ router.put('/:id/hidden', isSignedIn, async (req, res) => {
         console.log(`Cannot hide/unhide recipe: ${err}`)
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
     }
+})
+//--------- PUT ---------//
+
+router.delete('/:id', isSignedIn, async (req, res) => {
+    const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id)
+    res.redirect(`/auth/profile/${req.session.user._id}`)
 })
 
 
