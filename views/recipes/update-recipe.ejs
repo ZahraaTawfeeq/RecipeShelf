@@ -22,19 +22,13 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-                            <!-- Name -->
                             <label>Name</label>
-                            <input type="text" name="name" value="<%= pickedRecipe.name %>" required>
-                            <br><br>
+                            <input type="text" id="name" name="name" value="<%= pickedRecipe.name %>" required>
+                        </div>
 
-                            <!-- Description  -->
-                            <label>Description</label>
-                            <textarea name="description"><%= pickedRecipe.description %></textarea>
-                            <br><br>
-
-                            <!-- Cuisine -->
-                            <label>Cuisine</label>
-                            <select name="cuisine" required>
+                        <div class="form-group">
+                            <label for="cuisine">Cuisine</label>
+                            <select name="cuisine" id="cuisine" required>
                                 <% for(let oneCuisine of allCuisines){%>
                                     <option value="<%= oneCuisine.name %>" <%=pickedRecipe.cuisine==oneCuisine.name
                                         ? "selected" : "" %>
@@ -43,12 +37,10 @@
                                     </option>
                                     <% }%>
                             </select>
-                            <br><br>
-
-                            <!-- Category -->
-                            <label>Category</label>
-
-                            <select name="category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select name="category" id="category" required>
                                 <% for(let oneCategory of allCategories){ %>
                                     <option value="<%= oneCategory._id %>"
                                         <%=pickedRecipe.category._id.toString()==oneCategory._id.toString() ? "selected"
@@ -57,51 +49,62 @@
                                     </option>
                                     <% } %>
                             </select>
-                            <br><br>
+                        </div>
 
-                            <!-- Serving -->
-                            <label>Serving</label>
-                            <input type="number" name="serving" value="<%= pickedRecipe.serving %>">
-                            <br><br>
 
-                            <!-- Ingredients -->
-                            <label>Ingredients</label>
-                            <% allIngredients.forEach(oneIng=>{ %>
-                                <div>
-                                    <input type="checkbox" name="ingredients" value="<%= oneIng._id %>"
-                                        <%=pickedRecipe.ingredients.some(ing=> ing._id.equals(oneIng._id)) ? "checked" :
-                                    "" %>>
+                        <div class="form-group">
+                            <label for="serving">Serving</label>
+                            <input type="number" name="serving" id="serving" value="<%= pickedRecipe.serving %>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prepTime">Preparation Time</label>
+                            <input type="number" name="prepTime" id="prepTime" value="<%= pickedRecipe.prepTime %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="cookTime">Cooking Time</label>
+                            <input type="number" name="cookTime" id="cookTime" value="<%= pickedRecipe.cookTime %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Recipe Image</label>
+                            <% if (pickedRecipe.image) { %>
+                                <img src="/images/<%= pickedRecipe.image %>" width="200">
+                                <% } %>
+                                    <label>Update Image?</label>
+                                    <input type="file" name="image" id="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description"><%= pickedRecipe.description %></textarea>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h2>Ingredients</h2>
+                    <div class="ingredients-grid">
+                        <% for (let oneIng of allIngredients){%>
+                            <label class="ingredient-item">
+                                <input type="checkbox" name="ingredients" value="<%= oneIng._id %>"
+                                    <%=pickedRecipe.ingredients.some(ing=> ing._id.equals(oneIng._id)) ? "checked" :
+                                "" %>>
+                                <span>
                                     <%= oneIng.name %>
-                                </div>
-                                <% }) %>
-                                    <br>
+                                </span>
+                            </label>
+                            <% } %>
+                    </div>
+                </div>
 
-                                    <!-- Instructions -->
-                                    <label>Instructions</label>
-                                    <textarea name="instructions"><%= pickedRecipe.instructions %></textarea>
-                                    <br><br>
+                <div class="form-card">
+                    <div class="form-group">
+                        <label for="instructions">Instructions</label>
+                        <textarea id="instructions" name="instructions"><%= pickedRecipe.instructions %></textarea>
+                    </div>
+                </div>
 
-                                    <!-- Prep Time -->
-                                    <label>Prep Time</label>
-                                    <input type="number" name="prepTime" value="<%= pickedRecipe.prepTime %>">
-                                    <br><br>
-
-                                    <!-- Cook Time -->
-                                    <label>Cook Time</label>
-                                    <input type="number" name="cookTime" value="<%= pickedRecipe.cookTime %>">
-                                    <br><br>
-
-                                    <!-- Image -->
-                                    <% if (pickedRecipe.image) { %>
-                                        <img src="/images/<%= pickedRecipe.image %>" width="200">
-                                        <br><br>
-                                        <% } %>
-                                            <label>Update Image?</label>
-                                            <input type="file" name="image">
-                                            <br><br>
-
-                                            <!-- Update -->
-                                            <button>Update Recipe</button>
+                <button>Update Recipe</button>
             </form>
 </body>
 

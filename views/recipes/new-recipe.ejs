@@ -10,131 +10,133 @@
 
 <body>
     <%- include('../partials/navbar') %>
-<div class="recipe-form-page">
+        <div class="recipe-form-page">
 
-    <h1>Add Recipe</h1>
+            <h1>Add Recipe</h1>
 
-    <form class="recipe-form" action="/recipes/new" method="post" enctype="multipart/form-data">
+            <form class="recipe-form" action="/recipes/new" method="post" enctype="multipart/form-data">
 
-        <!-- Information -->
-        <div class="form-card">
+                <!-- Information -->
+                <div class="form-card">
 
-            <div class="form-grid">
+                    <div class="form-grid">
 
-                <div class="form-group">
-                    <label for="name">Recipe Name</label>
-                    <input required type="text" id="name" name="name" placeholder="Recipe name">
+                        <div class="form-group">
+                            <label for="name">Recipe Name</label>
+                            <input required type="text" id="name" name="name" placeholder="Recipe name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cuisine">Cuisine</label>
+                            <select name="cuisine" id="cuisine" required>
+                                <option disabled selected>Choose cuisine</option>
+
+                                <% for(let oneCuisine of allCuisines){ %>
+                                    <option value="<%= oneCuisine.name %>">
+                                        <%= oneCuisine.name %>
+                                    </option>
+                                    <% } %>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+
+                            <select name="category" id="category" required>
+                                <option disabled selected>Choose category</option>
+
+                                <% for(let oneCategory of allCategories){ %>
+                                    <option value="<%= oneCategory._id %>">
+                                        <%= oneCategory.name %>
+                                    </option>
+                                    <% } %>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serving">Serving</label>
+                            <input required type="number" id="serving" name="serving">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prepTime">Preparation Time</label>
+                            <input type="number" id="prepTime" name="prepTime">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cookTime">Cooking Time</label>
+                            <input type="number" id="cookTime" name="cookTime">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="image">Recipe Image</label>
+                            <input type="file" id="image" name="image">
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="cuisine">Cuisine</label>
-                    <select name="cuisine" id="cuisine" required>
-                        <option disabled selected>Choose cuisine</option>
+                <!-- Description -->
 
-                        <% for(let oneCuisine of allCuisines){ %>
-                            <option value="<%= oneCuisine.name %>">
-                                <%= oneCuisine.name %>
-                            </option>
-                        <% } %>
+                <div class="form-card">
 
-                    </select>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+
+                        <textarea id="description" name="description"></textarea>
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="category">Category</label>
+                <!-- Ingredients -->
 
-                    <select name="category" id="category" required>
-                        <option disabled selected>Choose category</option>
+                <div class="form-card">
 
-                        <% for(let oneCategory of allCategories){ %>
-                            <option value="<%= oneCategory._id %>">
-                                <%= oneCategory.name %>
-                            </option>
-                        <% } %>
+                    <h2>Ingredients</h2>
 
-                    </select>
+                    <div class="ingredients-grid">
+
+                        <% for(let oneIng of allIngredients){ %>
+
+                            <label class="ingredient-item">
+
+                                <input type="checkbox" name="ingredients" value="<%= oneIng._id %>">
+
+                                <span>
+                                    <%= oneIng.name %>
+                                </span>
+
+                            </label>
+
+                            <% } %>
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="serving">Serving</label>
-                    <input required type="number" id="serving" name="serving">
+                <!-- Instructions -->
+
+                <div class="form-card">
+
+                    <div class="form-group">
+
+                        <label for="instructions">Instructions</label>
+
+                        <textarea id="instructions" name="instructions"></textarea>
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="prepTime">Preparation Time</label>
-                    <input type="number" id="prepTime" name="prepTime">
-                </div>
+                <button>Add Recipe</button>
 
-                <div class="form-group">
-                    <label for="cookTime">Cooking Time</label>
-                    <input type="number" id="cookTime" name="cookTime">
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="image">Recipe Image</label>
-                    <input type="file" id="image" name="image">
-                </div>
-
-            </div>
+            </form>
 
         </div>
-
-        <!-- Description -->
-
-        <div class="form-card">
-
-            <div class="form-group">
-                <label for="description">Description</label>
-
-                <textarea id="description" name="description"></textarea>
-
-            </div>
-
-        </div>
-
-        <!-- Ingredients -->
-
-        <div class="form-card">
-
-            <h2>Ingredients</h2>
-
-            <div class="ingredients-grid">
-
-                <% for(let oneIng of allIngredients){ %>
-
-                    <label class="ingredient-item">
-
-                        <input type="checkbox" name="ingredients" value="<%= oneIng._id %>">
-
-                        <span><%= oneIng.name %></span>
-
-                    </label>
-
-                <% } %>
-
-            </div>
-
-        </div>
-
-        <!-- Instructions -->
-
-        <div class="form-card">
-
-            <div class="form-group">
-
-                <label for="instructions">Instructions</label>
-
-                <textarea id="instructions" name="instructions"></textarea>
-
-            </div>
-
-        </div>
-
-        <button>Add Recipe</button>
-
-    </form>
-
-</div>
 </body>
 
 </html>
