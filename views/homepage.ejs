@@ -18,52 +18,56 @@
             </div>
 
             <div class="hero-content">
-                <h1>Welcome to Recipe Shelf</h1>
+                <h1>Welcome to <br /> Recipe Shelf</h1>
                 <p>Discover delicious recipes from around the world.</p>
             </div>
         </section>
-        <!-- <section id="motion-section">
-            <div>
-                <h1>🍳 Welcome to Recipe Shelf</h1>
-                <p>
-                    Discover delicious recipes, save your favorites,
-                    and create your own digital cookbook.
-                </p>
-                <div>
-                    <a href="/recipes/all-recipes">
-                        <button>Explore Recipes</button>
-                    </a>
-                    <a href="/recipes/new-recipe">
-                        <button>Create Recipe</button>
-                    </a>
-                </div>
+        <div class="hero-buttons">
+
+            <div class="hero-stats">
+                <h2>
+                    <%= userCount %> Members
+                </h2>
+                <h2>
+                    <%= recipeCount %> Recipes
+                </h2>
             </div>
+
+            <div class="hero-actions">
+
+                <a href="/recipes/all-recipes" class="primary-btn">
+                    🍽️ Explore Recipes
+                </a>
+
+                <% if (!user) { %>
+                    <a href="/auth/sign-up" class="secondary-btn">
+                        👩‍🍳 Start Cooking
+                    </a>
+                    <% } %>
+
+            </div>
+
+        </div>
+
+
+        <section class="features">
+
+            <div class="feature-card">
+                <h3>🍽️ Discover Recipes</h3>
+                <p>Browse recipes from different cuisines and categories.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>❤️ Save Favorites</h3>
+                <p>Keep your favorite recipes in one convenient place.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>✍️ Share Recipes</h3>
+                <p>Create and share your own delicious recipes.</p>
+            </div>
+
         </section>
-
-        <section>
-            <div>
-                <h2>📖 Browse Recipes</h2>
-                <p>
-                    Find recipes from different cuisines and discover
-                    new dishes every day.
-                </p>
-            </div>
-
-            <div>
-                <h2>🥗 Create Your Own</h2>
-                <p>
-                    Add your personal recipes and build your own
-                    digital cookbook.
-                </p>
-            </div>
-
-            <div>
-                <h2>⭐ Save Favorites</h2>
-                <p>
-                    Keep your favorite meals organized in one place.
-                </p>
-            </div>
-        </section> -->
 </body>
 
 </html>

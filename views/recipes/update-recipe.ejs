@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/add-edit-delete.css">
 </head>
 
 <body>
@@ -84,16 +84,27 @@
                 <div class="form-card">
                     <h2>Ingredients</h2>
                     <div class="ingredients-grid">
-                        <% for (let oneIng of allIngredients){%>
-                            <label class="ingredient-item">
-                                <input type="checkbox" name="ingredients" value="<%= oneIng._id %>"
-                                    <%=pickedRecipe.ingredients.some(ing=> ing._id.equals(oneIng._id)) ? "checked" :
-                                "" %>>
-                                <span>
-                                    <%= oneIng.name %>
-                                </span>
-                            </label>
-                            <% } %>
+                        <% for (let oneCateg of allIngCateg) { %>
+                            <div class="ingredient-category">
+                                <h3>
+                                    <%= oneCateg %>
+                                </h3>
+
+                                <% for (let oneIng of allIngredients){%>
+                                    <% if (oneIng.category===oneCateg) { %>
+
+                                        <label class="ingredient-item">
+                                            <input type="checkbox" name="ingredients" value="<%= oneIng._id %>"
+                                                <%=pickedRecipe.ingredients.some(ing=> ing._id.equals(oneIng._id)) ?
+                                            "checked" :
+                                            "" %>>
+                                            <span>
+                                                <%= oneIng.name %>
+                                            </span>
+                                        </label>
+                                        <% }} %>
+                            </div>
+                            <%}%>
                     </div>
                 </div>
 

@@ -82,7 +82,7 @@ router.get('/profile', isSignedIn, async (req, res) => {
       favorites: req.session.user._id
     }).populate('creator cuisine category favorites')
 
-    res.render('profile/profile.ejs', { allUsersRecipes, userFav, user: req.session.user, hiddenRecipe})
+    res.render('profile/profile.ejs', { allUsersRecipes, userFav, user: req.session.user, hiddenRecipe })
   } catch (err) {
     console.log(`Cannot view profile ${err}`)
     res.redirect('/')
@@ -95,13 +95,11 @@ router.get('/recipe-details/:id', async (req, res) => {
     // get the picked recipe by ad and populate references
     const pickedRecipe = await Recipes.findById((req.params.id)).populate('category creator ingredients favorites')
     // go to recipe details page
-    res.render('recipes/recipe-details.ejs', { pickedRecipe, user: req.session.user._id})
+    res.render('recipes/recipe-details.ejs', { pickedRecipe, user: req.session.user._id })
   } catch (err) {
     console.log(`Cannot get recipe details page: ${err}`)
     res.redirect('recipes/all-recipes')
   }
 })
-
-
 
 module.exports = router;

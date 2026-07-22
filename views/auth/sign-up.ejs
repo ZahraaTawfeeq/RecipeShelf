@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-  </head>
-  <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+
     <%- include('../partials/navbar') %>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="post">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
-      <button type="submit">Sign up</button>
-    </form>
-  </body>
+
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <h1>Create Account</h1>
+
+            <p class="auth-subtitle">
+                Join Recipe Shelf and start saving your favorite recipes.
+            </p>
+
+            <form action="/auth/sign-up" method="POST" class="auth-form">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                </div>
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+
 </html>

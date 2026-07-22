@@ -1,0 +1,107 @@
+@import url('./navbar.css');
+@import url('./style.css');
+
+.profile-page {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.profile-page h1 {
+    text-align: center;
+    color: var(--dark-brown);
+    margin-bottom: 30px;
+}
+
+#sidebar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+#sidebar button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 12px;
+    background: var(--terracotta);
+    color: white;
+    font-family: "Fraunces", serif;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#sidebar button:hover {
+    background: var(--gold);
+    color: var(--dark-brown);
+}
+#sidebar button a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar button a:hover,
+#sidebar button a:visited,
+#sidebar button a:active {
+    color: inherit;
+    text-decoration: none;
+}
+/* Content */
+
+#sections section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+#sections h1 {
+    color: var(--terracotta);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#sections a {
+    text-decoration: none;
+    color: var(--dark-brown);
+}
+
+#sections p {
+    background: var(--cream);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: .3s;
+}
+
+#sections p:hover {
+    background: var(--beige);
+}
+
+/* Hide sections */
+
+#favorites-section,
+#hidden-section {
+    display: none;
+}
+#new-recipe a:hover{
+    text-decoration: none;
+}
+#new-recipe {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #C86B4A;
+    color: #FFF8F0;
+    text-decoration: none;
+    border-radius: 20px;
+    font-family: "Fraunces", serif;
+    transition: 0.3s ease;
+}
+
+#new-recipe:hover {
+    background: #D4A373;
+    color: #3A2E2A;
+}

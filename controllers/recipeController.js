@@ -69,16 +69,30 @@ router.get('/all-recipes', async (req, res) => {
 // get new recipe page
 router.get('/new-recipe', isSignedIn, async (req, res) => {
     try {
-        // fetch ingredients, categories, and cuisines
-        const allIngredients = await Ingredient.find({})
+        const allIngredients = await Ingredient.find({}).sort({
+            name: 1
+        })
+
+        const allIngCateg = []
+
+        for (let oneIng of allIngredients) {
+            if (!allIngCateg.includes(oneIng.category)) {
+                allIngCateg.push(oneIng.category)
+            }
+        }
         const allCategories = await Category.find({})
         const allCuisines = cuisines
 
-        // go to new recipe page
-        res.render('recipes/new-recipe.ejs', { allIngredients, allCuisines, allCategories })
+        res.render('recipes/new-recipe.ejs', {
+            allIngredients,
+            allIngCateg,
+            allCategories,
+            allCuisines
+        })
+
     } catch (err) {
-        console.log(`Cannot get new recipe page: ${err}`)
-        res.redirect('recipes/all-recipes')
+        console.log(err)
+        res.redirect('/recipes/all-recipes')
     }
 })
 
@@ -104,14 +118,25 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
 
         // check if the recipe creator is the logged in user
         if (pickedRecipe.creator.equals(req.session.user._id)) {
+            const allIngredients = await Ingredient.find({}).sort({
+                name: 1
+            })
 
+            const allIngCateg = []
+
+            for (let oneIng of allIngredients) {
+                if (!allIngCateg.includes(oneIng.category)) {
+                    allIngCateg.push(oneIng.category)
+                }
+            }
             // fetch ingredients, categories, and cuisines
             const allCategories = await Category.find({})
-            const allIngredients = await Ingredient.find({})
+            // const allIngredients = await Ingredient.find({})
             const allCuisines = cuisines
             // go to update recipe page
             res.render('recipes/update-recipe.ejs', {
                 pickedRecipe, allCategories, allIngredients, allCuisines, user: req.session.user._id
+                , allIngCateg
             })
         } else {
 
@@ -169,6 +194,7 @@ router.get('/delete-confirm/:id', isSignedIn, async (req, res) => {
     console.log(currentRecipe)
     res.render('recipes/delete-confirm.ejs', { currentRecipe })
 })
+
 //--------- POST ---------//
 
 // post new recipe
@@ -307,5 +333,32 @@ router.delete('/:id', isSignedIn, async (req, res) => {
     res.redirect(`/auth/profile/${req.session.user._id}`)
 })
 
+router.delete('/review/:recipeId/:reviewId', isSignedIn, async (req, res) => {
+    try {
+
+        const pickedRecipe = await Recipe.findById(req.params.recipeId)
+            .populate("review.creator")
+
+        const pickedReview = pickedRecipe.review.id(req.params.reviewId)
+
+        if (!pickedReview) {
+            return res.redirect(`/recipes/recipe-details/${req.params.recipeId}`)
+        }
+
+        if (pickedReview.creator._id.toString() !== req.session.user._id.toString()) {
+            return res.redirect(`/recipes/recipe-details/${req.params.recipeId}`)
+        }
+
+        pickedRecipe.review.pull(req.params.reviewId)
+
+        await pickedRecipe.save()
+
+        res.redirect(`/recipes/recipe-details/${req.params.recipeId}`)
+
+    } catch (err) {
+        console.log(`Cannot delete review: ${err}`)
+        res.redirect(`/recipes/recipe-details/${req.params.recipeId}`)
+    }
+})
 
 module.exports = router

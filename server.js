@@ -59,6 +59,10 @@ app.use('/recipes', recipeController)
 app.use('/chats', chatController)
 
 
+app.use((req, res) => {
+  res.status(404).render('404.ejs')
+})
+
 // connect to database and listen on Port 3000
 async function startServer() {
   const PORT = process.env.PORT || 3000;
@@ -68,5 +72,6 @@ async function startServer() {
     console.log(`App is running on port ${PORT}`);
   });
 }
+
 
 startServer();

@@ -7,7 +7,7 @@
     <title>
         <%= pickedRecipe.name %>
     </title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/all-and-details.css">
 </head>
 
 <body>
@@ -196,6 +196,15 @@
                                     By: <%= oneReview.creator.username %>
                                 </p>
 
+                                <% if (oneReview.creator._id.equals(user)) { %>
+
+                                    <form
+                                        action="/recipes/review/<%= pickedRecipe._id %>/<%= oneReview._id %>?_method=DELETE"
+                                        method="POST">
+                                        <button type="submit" class="delete-review-btn">🗑️</button>
+                                    </form>
+
+                                    <% } %>
                             </div>
 
                             <% } %>

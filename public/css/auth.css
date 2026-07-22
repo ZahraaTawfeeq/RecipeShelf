@@ -1,0 +1,103 @@
+@import url("./style.css");
+@import url("./navbar.css");
+
+/* ---------- Page ---------- */
+
+.auth-page {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* ---------- Card ---------- */
+
+.auth-card {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(58, 46, 42, .15);
+}
+
+.auth-card h1 {
+    text-align: center;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--dark-brown);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* ---------- Form ---------- */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--dark-brown);
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 14px;
+    border-radius: 15px;
+    border: 1px solid var(--beige);
+    background: var(--cream);
+    font-family: "Fraunces", serif;
+    color: var(--dark-brown);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--terracotta);
+}
+
+/* ---------- Button ---------- */
+
+.auth-form button {
+    margin-top: 10px;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: var(--terracotta);
+    color: white;
+    font-family: "Fraunces", serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.auth-form button:hover {
+    background: var(--gold);
+    color: var(--dark-brown);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 20px;
+    }
+
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+}
