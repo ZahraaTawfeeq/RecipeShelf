@@ -18,10 +18,7 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 
 ## Getting Started
 
--
-
-OR
-1. Create folder for your project and cd into it
+1. Create folder for the project and cd into it
 
 2. Perform the following commands in the command line: 
     
