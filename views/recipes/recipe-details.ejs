@@ -17,8 +17,9 @@
         <h1>
             <%= pickedRecipe.name %>
         </h1>
-        <p>Have Q ask the chef now! <a href="/chats/chat-window/<%=pickedRecipe.creator._id%>">chat</a>
+        <p>Have any questions? ask the chef now! <a href="/chats/chat-window/<%=pickedRecipe.creator._id%>">chat</a>
         </p>
+        
         <div class="details-buttons">
 
             <% if (pickedRecipe.favorites.some((oneId)=> oneId.equals(user))) { %>
