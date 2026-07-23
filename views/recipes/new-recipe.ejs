@@ -16,7 +16,6 @@
 
             <form class="recipe-form" action="/recipes/new" method="post" enctype="multipart/form-data">
 
-                <!-- Information -->
                 <div class="form-card">
 
                     <div class="form-grid">
@@ -79,12 +78,10 @@
 
                 </div>
 
-                <!-- Description -->
-
                 <div class="form-card">
 
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description required">Description</label>
 
                         <textarea required minLength="10" id="description" name="description" minlength="10"></textarea>
 
@@ -92,7 +89,6 @@
 
                 </div>
 
-                <!-- Ingredients -->
                 <div class="form-card">
                     <h2>Ingredients</h2>
                     <div class="ingredients-grid">
@@ -115,8 +111,6 @@
                             <% } %>
                     </div>
                 </div>
-
-                <!-- Instructions -->
 
                 <div class="form-card">
 

@@ -1,4 +1,73 @@
+@import url('./style.css');
 @import url('./navbar.css');
+
+/* Delete Page */
+
+.container {
+    width: 90%;
+    max-width: 550px;
+    margin: 80px auto;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(58, 46, 42, .15);
+    text-align: center;
+}
+
+.panel p {
+    font-size: 22px;
+    color: var(--dark-brown);
+    margin-bottom: 35px;
+    line-height: 1.5;
+}
+
+/* Buttons */
+
+.delete-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.delete-btns form {
+    margin: 0;
+}
+
+.delete-btns button {
+    width: 140px;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    font-family: "Fraunces", serif;
+    font-size: 17px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+/* No button */
+
+.delete-btns form:first-child button {
+    background: var(--beige);
+    color: var(--dark-brown);
+}
+
+.delete-btns form:first-child button:hover {
+    background: #d7c0a1;
+}
+
+/* Yes button */
+
+.delete-btns form:last-child button {
+    background: #c84b4b;
+    color: white;
+}
+
+.delete-btns form:last-child button:hover {
+    background: #a63838;
+}
 
 /* Add & Edit Recipe */
 

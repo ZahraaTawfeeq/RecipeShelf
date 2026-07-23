@@ -46,13 +46,11 @@ const cuisines = [
 ]
 
 //--------- GET ---------//
-// get all recipes
+
 router.get('/all-recipes', async (req, res) => {
     try {
-        // get all recipes that is not hidden
         const allRecipes = await Recipe.find({ isHidden: false }).populate('creator cuisine category')
         const category = await Category.find({})
-        // go to all recipes page
         res.render('recipes/all-recipes.ejs', {
             allRecipes,
             category,
@@ -65,7 +63,6 @@ router.get('/all-recipes', async (req, res) => {
     }
 })
 
-// get new recipe page
 router.get('/new-recipe', isSignedIn, async (req, res) => {
     try {
         const allIngredients = await Ingredient.find({}).sort({
@@ -95,13 +92,10 @@ router.get('/new-recipe', isSignedIn, async (req, res) => {
     }
 })
 
-// get specific recipe details page
 router.get('/recipe-details/:id', async (req, res) => {
     try {
-        // get the picked recipe by ad and populate references
         const pickedRecipe = await Recipe.findById((req.params.id)).populate('category creator ingredients favorites review.creator')
 
-        // go to recipe details page
         res.render('recipes/recipe-details.ejs', { pickedRecipe, user: req.session.user._id })
     } catch (err) {
         console.log(`Cannot get recipe details page: ${err}`)
@@ -109,13 +103,10 @@ router.get('/recipe-details/:id', async (req, res) => {
     }
 })
 
-// get update recipe page
 router.get('/:id/edit', isSignedIn, async (req, res) => {
     try {
-        // get a specific recipe to update
         const pickedRecipe = await Recipe.findById(req.params.id).populate('category ingredients creator')
 
-        // check if the recipe creator is the logged in user
         if (pickedRecipe.creator.equals(req.session.user._id)) {
             const allIngredients = await Ingredient.find({}).sort({
                 name: 1
@@ -128,18 +119,14 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
                     allIngCateg.push(oneIng.category)
                 }
             }
-            // fetch ingredients, categories, and cuisines
             const allCategories = await Category.find({})
-            // const allIngredients = await Ingredient.find({})
             const allCuisines = cuisines
-            // go to update recipe page
             res.render('recipes/update-recipe.ejs', {
                 pickedRecipe, allCategories, allIngredients, allCuisines, user: req.session.user._id
                 , allIngCateg
             })
         } else {
 
-            // if not the creator redirect to all recipes page
             res.redirect('/recipes/all-recipes')
         }
     } catch (err) {
@@ -196,10 +183,8 @@ router.get('/delete-confirm/:id', isSignedIn, async (req, res) => {
 
 //--------- POST ---------//
 
-// post new recipe
 router.post('/new', isSignedIn, upload.single("image"), async (req, res) => {
     try {
-        // get all the filled fields
         const newRecipe = {
             name: req.body.name,
             description: req.body.description,
@@ -214,10 +199,8 @@ router.post('/new', isSignedIn, upload.single("image"), async (req, res) => {
             creator: req.session.user._id
         }
 
-        // add to Recipe
         await Recipe.create(newRecipe)
 
-        // redirect to home
         res.redirect('/recipes/all-recipes')
     } catch (err) {
         console.log(`Cannot add the new recipe: ${err}`)
@@ -225,7 +208,6 @@ router.post('/new', isSignedIn, upload.single("image"), async (req, res) => {
     }
 })
 
-// Add recipe to favourites
 router.post('/:id/fav', isSignedIn, async (req, res) => {
     try {
 
@@ -243,7 +225,6 @@ router.post('/:id/fav', isSignedIn, async (req, res) => {
     }
 })
 
-// Remove recipe from favourites
 router.post('/:id/unFav', isSignedIn, async (req, res) => {
     try {
         const recipe = await Recipe.findById(req.params.id)
@@ -278,10 +259,8 @@ router.post('/review/:id', async (req, res) => {
 
 //--------- PUT ---------//
 
-// update recipe data
 router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
     try {
-        // get the updated data
         const updatedRecipe = {
             name: req.body.name,
             description: req.body.description,
@@ -296,10 +275,8 @@ router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
         if (req.file) {
             updatedRecipe.image = req.file.filename
         }
-        // update the recipe based on the id
         await Recipe.findByIdAndUpdate(req.params.id, updatedRecipe)
 
-        // redirect to the recipe page
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
     } catch (err) {
         console.log(`Cannot update recipe: ${err}`)
@@ -307,16 +284,12 @@ router.put('/:id', isSignedIn, upload.single('image'), async (req, res) => {
     }
 })
 
-// hide or unhide recipe
 router.put('/:id/hidden', isSignedIn, async (req, res) => {
     try {
-        // get the recipe by its id
         const recipe = await Recipe.findById(req.params.id)
 
-        // if isHidden = false then do isHidden = tru and the opposit in every click
         recipe.isHidden = !recipe.isHidden
 
-        // save changes
         await recipe.save()
 
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
@@ -325,11 +298,11 @@ router.put('/:id/hidden', isSignedIn, async (req, res) => {
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
     }
 })
-//--------- PUT ---------//
+//--------- delete ---------//
 
 router.delete('/:id', isSignedIn, async (req, res) => {
     const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id)
-    res.redirect(`/auth/profile/${req.session.user._id}`)
+    res.redirect(`/auth/profile`)
 })
 
 router.delete('/review/:recipeId/:reviewId', isSignedIn, async (req, res) => {

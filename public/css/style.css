@@ -30,7 +30,7 @@ h1 {
 }
 
 
-/* homepage content */
+/* homepage */
 .hero {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -79,8 +79,8 @@ h1 {
     font-size: 1.3rem;
     color: #FFF8F0;
 }
-/* ---------- Hero Buttons ---------- */
 
+/* Hero Buttons */
 .hero-buttons {
     width: 90%;
     margin: 80px auto;
@@ -111,7 +111,7 @@ h1 {
 }
 
 
-/* ---------- Hero Links ---------- */
+/* Hero Link */
 
 .hero-actions {
     display: flex;

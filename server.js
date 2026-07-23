@@ -1,4 +1,3 @@
-// imports
 const express = require("express")
 const app = express()
 const dotenv = require("dotenv").config()
@@ -8,11 +7,9 @@ const methodOverride = require('method-override')
 const { MongoStore } = require("connect-mongo");
 const connectToDB = require('./db.js')
 
-// middleware imports
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
-// controller Imports
 const authController = require("./controllers/auth.controllers.js");
 const indexController = require("./controllers/index.controllers.js");
 const ingredientController = require("./controllers/ingredientController.js");
@@ -24,7 +21,6 @@ const chatController = require("./controllers/chatController.js");
 const dns = require('dns')
 dns.setServers(['8.8.8.8', '1.1.1.1'])
 
-// Middleware
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'))
@@ -50,7 +46,6 @@ app.use(passUserToView)
 
 
 
-// Routes
 app.use('/auth', authController)
 app.use('/', indexController)
 app.use('/ingredients', ingredientController)
@@ -63,7 +58,6 @@ app.use((req, res) => {
   res.status(404).render('404.ejs')
 })
 
-// connect to database and listen on Port 3000
 async function startServer() {
   const PORT = process.env.PORT || 3000;
   await connectToDB();

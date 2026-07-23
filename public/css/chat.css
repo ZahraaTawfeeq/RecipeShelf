@@ -230,41 +230,6 @@
 }
 
 /* Messages */
-/* .messages {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.message-row {
-    display: flex;
-    justify-content: flex-start;
-}
-
-.message-row.mine {
-    justify-content: flex-end;
-}
-
-.message-bubble {
-    max-width: 70%;
-    padding: 15px 20px;
-    border-radius: 22px;
-    word-break: break-word;
-}
-
-.my-message {
-    background: var(--terracotta);
-    color: white;
-    border-bottom-right-radius: 8px;
-}
-
-.other-message {
-    background: white;
-    color: var(--dark-brown);
-    border: 1px solid var(--beige);
-    border-bottom-left-radius: 8px;
-} */
-
 
 .messages {
     padding: 30px;

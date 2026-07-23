@@ -19,7 +19,7 @@
         <p>Have Q ask the chef now! <a href="/chats/chat-window/<%=pickedRecipe.creator._id%>">chat</a>
         </p>
         <div class="details-buttons">
-            <!-- Fav & unFav Recipe -->
+
             <% if (pickedRecipe.favorites.some((oneId)=> oneId.equals(user))) { %>
                 <form action="/recipes/<%= pickedRecipe._id %>/unFav" method="post">
                     <button>
@@ -34,24 +34,19 @@
                     </form>
                     <% } %>
 
-                        <!-- creators edit & isHidden button -->
                         <% if (pickedRecipe.creator._id.equals(user)) { %>
 
-                            <!-- Edit -->
                             <button>
                                 <a href="/recipes/<%= pickedRecipe._id %>/edit">Edit Recipe</a>
                             </button>
                             <br>
-                            <!-- Delete -->
                             <a href="/recipes/delete-confirm/<%=pickedRecipe._id%>">
                                 <button>
                                     <a href="/recipes/delete-confirm/<%=pickedRecipe._id%>">
                                         Delete Recipe
                                     </a>
                                 </button>
-                                <!-- </form> -->
                                 <br>
-                                <!-- isHidden -->
                                 <form action=" /recipes/<%=pickedRecipe._id %>/hidden?_method=PUT" method="post">
                                     <button>
                                         <% if (pickedRecipe.isHidden) { %>
@@ -65,7 +60,6 @@
         </div>
         <div class="recipe-layout">
 
-            <!-- Image -->
             <% if (pickedRecipe.image) { %>
                 <div class="recipe-image-side">
                     <img src="/images/<%= pickedRecipe.image %>" alt="<%= pickedRecipe.name %>">
@@ -73,10 +67,8 @@
                 <% } %>
 
 
-                    <!-- Content -->
                     <div class="recipe-content-side">
 
-                        <!-- Description -->
                         <h3>Description</h3>
                         <p>
                             <%= pickedRecipe.description %>
@@ -123,7 +115,6 @@
                             </div>
 
                         </div>
-                        <!-- Ingredients -->
                         <h3>Ingredients</h3>
 
                         <ul>

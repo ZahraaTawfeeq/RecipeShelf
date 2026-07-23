@@ -12,59 +12,57 @@
 
     <%- include('../partials/navbar') %>
 
-    <div class="conversation-page">
+        <div class="conversation-page">
 
-        <div class="conversation-card">
+            <div class="conversation-card">
 
-            <div class="conversation-header">
-                <h2><%= sendChat.subject %></h2>
-                <p>Chat with <strong><%= sendChat.recipient.username %></strong></p>
+                <div class="conversation-header">
+                    <h2>
+                        <%= sendChat.subject %>
+                    </h2>
+                    <p>Chat with <strong>
+                            <%= sendChat.recipient.username %>
+                        </strong></p>
+                </div>
+
+                <div class="messages">
+                    <% for (let oneMessage of sendChat.messages) { %>
+
+                        <% if (oneMessage.sender._id.toString()===user._id.toString()) { %>
+
+                            <div class="message-row mine">
+                                <div class="message-bubble my-message">
+                                    <%= oneMessage.message %>
+                                </div>
+                            </div>
+
+                            <% } else { %>
+
+                                <div class="message-row">
+                                    <div class="message-bubble other-message">
+                                        <%= oneMessage.message %>
+                                    </div>
+                                </div>
+
+                                <% } %>
+
+                                    <% } %>
+
+                </div>
+
+                <form class="message-form" action="/chats/new-message" method="post">
+
+                    <textarea name="message" placeholder="Type your message..." required></textarea>
+
+                    <input hidden name="sender" value="<%= sendChat._id %>">
+
+                    <button>Send Message</button>
+
+                </form>
+
             </div>
 
-            <div class="messages">
-<% for (let oneMessage of sendChat.messages) { %>
-
-    <% if (oneMessage.sender._id.toString() === user._id.toString()) { %>
-
-        <div class="message-row mine">
-            <div class="message-bubble my-message">
-                <%= oneMessage.message %>
-            </div>
         </div>
-
-    <% } else { %>
-
-        <div class="message-row">
-            <div class="message-bubble other-message">
-                <%= oneMessage.message %>
-            </div>
-        </div>
-
-    <% } %>
-
-<% } %>
-
-            </div>
-
-            <form class="message-form" action="/chats/new-message" method="post">
-
-                <textarea
-                    name="message"
-                    placeholder="Type your message..."
-                    required></textarea>
-
-                <input
-                    hidden
-                    name="sender"
-                    value="<%= sendChat._id %>">
-
-                <button>Send Message</button>
-
-            </form>
-
-        </div>
-
-    </div>
 
 </body>
 

@@ -6,6 +6,8 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 ## Screenshots
 
 ### 🏠Home Page🍽️
+![Homepage](public/images/HomePage.png)
+
 
 ## Technologies Used
 1. HTML
@@ -16,23 +18,36 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 
 ## Getting Started
 
-- Deployment link
+-
+
 OR
+1. Create folder for your project and cd into it
 
-git clone https://github.com/ZahraaTawfeeq/RecipeShelf
-rm -rf .git
-rm README.md
+2. Perform the following commands in the command line: 
+    
+    `git clone https://github.com/ZahraaTawfeeq/RecipeShelf`
 
-MONGODB_URI=your-mongo-db-connection-string
-SESSION_SECRET=your-sectret-key
-PORT=3000
+    `rm -rf .git`
 
-npm i
+    `rm README.md`
+
+3. Create a .env file with the following 2 values of your database connection:
+
+    `MONGODB_URI=your-mongo-db-connection-string`
+
+    `SESSION_SECRET=your-sectret-key`
+
+    `PORT=3000`
+
+4. run:
+
+    `npm i`
+
 ## Installation
 
-1. node seed.js 
+1. `node seed.js`
 
-2. nodemon server.js
+2. `nodemon server.js`
 
 ## User Stories
 **1.** Users can sign up, log in, and log out of the website.
@@ -115,9 +130,7 @@ npm i
 
 - **Browse Recipes:** View all recipes and explore detailed recipe pages.
 
-- **Recipe Management:** Create, edit, and hide your own recipes.
-
-- **Ingredient Search:** Search for ingredients while creating a new recipe.
+- **Recipe Management:** Create, edit, delete, and hide your own recipes.
 
 - **Favourites:** Save recipes to your favourites for quick access later.
 
@@ -129,13 +142,19 @@ npm i
 
 - **Recipe Search:** Find recipes by searching for specific ingredients.
 
-- **Filter by Rating:** Discover recipes based on their ratings.
-
 - **Filter by Category:** Browse recipes by category, such as - Desserts, Main Courses, Appetizers, Drinks, and more.
 
 ## Future Enhancements
 
-**1.** Responsive Design
+
+1. **Responsive Design** Improve the website for mobile phones and tablets.
+
+2. **Meal Planner** Allow users to plan their weekly meals using saved recipes.
+
+3. **Shopping List** Generate a shopping list automatically from selected recipe ingredients.
+
+4. **Recipe Recommendations** Suggest recipes based on users' favourites and browsing history.
+
 
 ## Credits
 This website was developed by Zahraa.

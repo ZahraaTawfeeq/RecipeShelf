@@ -87,17 +87,3 @@
     background: var(--gold);
     color: var(--dark-brown);
 }
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 600px) {
-
-    .auth-page {
-        padding: 20px;
-    }
-
-    .auth-card {
-        padding: 30px 20px;
-    }
-
-}
