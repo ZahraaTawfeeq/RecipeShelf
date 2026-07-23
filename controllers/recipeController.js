@@ -46,7 +46,6 @@ const cuisines = [
 ]
 
 //--------- GET ---------//
-
 // get all recipes
 router.get('/all-recipes', async (req, res) => {
     try {
@@ -211,7 +210,7 @@ router.post('/new', isSignedIn, upload.single("image"), async (req, res) => {
             cuisine: req.body.cuisine,
             category: req.body.category,
             ingredients: [].concat(req.body.ingredients || []),
-            image: req.file.filename,
+            image: req.file ? req.file.filename : "",
             creator: req.session.user._id
         }
 

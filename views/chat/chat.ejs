@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <div class="chat-page">
+
+            <h1>
+                💬 Chat with <%= recipient.username %>
+            </h1>
+
+
+            <form class="chat-form" action="/chats/new" method="post">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <input type="text" id="subject" name="subject" minlength="4" required>
+
+
+                <label for="body">
+                    Message
+                </label>
+
+                <textarea type="text" id="body" name="body" minlength="20" maxlength="150" required></textarea>
+
+                <input hidden type="text" value="<%=recipient._id%>" name="recipient">
+
+                <button>
+                    Send 💌
+                </button>
+
+            </form>
+
+        </div>
+
+</body>
+
+</html>

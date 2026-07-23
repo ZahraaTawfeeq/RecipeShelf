@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="chat-history-page">
+        <h1>Chat History</h1>
+
+        <div class="history-grid">
+
+            <div class="history-card">
+                <h2>Sent Chats</h2>
+
+                <% for (let oneChat of chatsHistory) { %>
+                    <div class="chat-item">
+                        <p><strong>Chat with:</strong> <%= oneChat.recipient.username %></p>
+                        <a href="/chats/continue/<%= oneChat._id %>">Continue Chat →</a>
+                    </div>
+                <% } %>
+
+                <% if(chatsHistory.length === 0){ %>
+                    <p class="empty">No sent chats yet.</p>
+                <% } %>
+            </div>
+
+            <div class="history-card">
+                <h2>Received Chats</h2>
+
+                <% for (let oneChat of chatssHistory) { %>
+                    <div class="chat-item">
+                        <p><strong>Chat with:</strong> <%= oneChat.sender.username %></p>
+                        <a href="/chats/continue/<%= oneChat._id %>">Continue Chat →</a>
+                    </div>
+                <% } %>
+
+                <% if(chatssHistory.length === 0){ %>
+                    <p class="empty">No received chats yet.</p>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

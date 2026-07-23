@@ -3,13 +3,12 @@
         <a href="/"> Recipe Shelf
         </a>
     </div>
-
     <div class="nav-links">
         <a href="/recipes/all-recipes">Recipes</a>
 
         <% if (user) { %>
-            <!-- <a href="/recipes/my-favorites">Favorites</a> -->
             <a href="/auth/profile">Profile</a>
+            <a href="/chats/chat-history">Chats</a>
             <a href="/auth/sign-out">Sign Out</a>
             <% } else { %>
                 <a href="/auth/sign-up">Sign Up</a>
