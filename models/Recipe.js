@@ -17,7 +17,6 @@ const recipeSchema = mongoose.Schema({
     cookTime: { type: Number },
     prepTime: { type: String },
     cuisine: { type: String, required: true },
-    // isFav: { type: Boolean, default: false },
     favorites: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

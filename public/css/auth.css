@@ -1,7 +1,6 @@
 @import url("./style.css");
 @import url("./navbar.css");
 
-/* ---------- Page ---------- */
 
 .auth-page {
     min-height: calc(100vh - 90px);
@@ -11,7 +10,6 @@
     padding: 40px;
 }
 
-/* ---------- Card ---------- */
 
 .auth-card {
     width: 100%;
@@ -35,7 +33,6 @@
     line-height: 1.6;
 }
 
-/* ---------- Form ---------- */
 
 .auth-form {
     display: flex;
@@ -68,7 +65,6 @@
     border-color: var(--terracotta);
 }
 
-/* ---------- Button ---------- */
 
 .auth-form button {
     margin-top: 10px;

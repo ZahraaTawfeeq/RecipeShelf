@@ -4,22 +4,11 @@ const Chat = require('../models/chat.js')
 const User = require('../models/user.js')
 const Recipe = require('../models/Recipe.js')
 
+//--------- GET ---------//
 router.get('/chat-window/:id', isSignedIn, async (req, res) => {
     const recipient = await User.findById(req.params.id)
 
     res.render('chat/chat.ejs', { recipient })
-})
-
-router.post('/new', isSignedIn, async (req, res) => {
-
-    const newChat = {
-        subject: req.body.subject,
-        recipient: req.body.recipient,
-        sender: req.session.user._id,
-        messages: [{ sender: req.session.user._id, message: req.body.body }]
-    }
-    Chat.create(newChat)
-    res.redirect(`/chats/chat-history`)
 })
 
 router.get('/chat-history', isSignedIn, async (req, res) => {
@@ -33,6 +22,19 @@ router.get('/chat-history', isSignedIn, async (req, res) => {
 router.get('/continue/:id', isSignedIn, async (req, res) => {
     const sendChat = await Chat.findById(req.params.id).populate('recipient sender messages.sender')
     res.render('chat/continue-chat.ejs', { sendChat })
+})
+
+//--------- POST ---------//
+router.post('/new', isSignedIn, async (req, res) => {
+
+    const newChat = {
+        subject: req.body.subject,
+        recipient: req.body.recipient,
+        sender: req.session.user._id,
+        messages: [{ sender: req.session.user._id, message: req.body.body }]
+    }
+    Chat.create(newChat)
+    res.redirect(`/chats/chat-history`)
 })
 
 router.post('/new-message', isSignedIn, async (req, res) => {

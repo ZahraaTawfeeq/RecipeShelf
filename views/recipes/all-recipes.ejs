@@ -49,7 +49,9 @@
                             <a href="/recipes/recipe-details/<%= oneRecipe._id %>" class="recipe-card">
 
                                 <div class="recipe-image">
-                                    <img src="/images/<%= oneRecipe.image %>" alt="Recipe Image">
+                                    <% if (oneRecipe.image) { %>
+                                        <img src="/images/<%= oneRecipe.image %>">
+                                        <% } %>
                                 </div>
 
                                 <div class="recipe-info">

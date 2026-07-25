@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prpfile</title>
+    <title>Profile</title>
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <link rel="stylesheet" href="/css/profile.css">
 </head>
@@ -67,16 +67,16 @@
         </div>
 </body>
 <script>
-    const sections = document.querySelectorAll("#sections section");
+    const sections = document.querySelectorAll("#sections section")
 
     function show(id) {
-        sections.forEach(section => section.style.display = "none");
-        document.getElementById(id).style.display = "block";
+        sections.forEach(section => section.style.display = "none")
+        document.getElementById(id).style.display = "block"
     }
 
-    document.getElementById("recipes").onclick = () => show("recipes-section");
-    document.getElementById("favorites").onclick = () => show("favorites-section");
-    document.getElementById("hidden").onclick = () => show("hidden-section");
+    document.getElementById("recipes").onclick = () => show("recipes-section")
+    document.getElementById("favorites").onclick = () => show("favorites-section")
+    document.getElementById("hidden").onclick = () => show("hidden-section")
 </script>
 
 </html>

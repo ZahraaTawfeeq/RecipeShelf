@@ -62,12 +62,12 @@
 
                         <div class="form-group">
                             <label for="prepTime">Preparation Time</label>
-                            <input type="number" id="prepTime" name="prepTime">
+                            <input type="number" id="prepTime" name="prepTime" min="1">
                         </div>
 
                         <div class="form-group">
                             <label for="cookTime">Cooking Time</label>
-                            <input type="number" id="cookTime" name="cookTime">
+                            <input type="number" id="cookTime" name="cookTime" min="1">
                         </div>
 
                         <div class="form-group full-width">
@@ -81,16 +81,16 @@
 
                 <div class="form-card">
 
-                    <div class="form-group">
-                        <label for="description required">Description</label>
+                    <div class="form-group required">
+                        <label for="description">Description</label>
 
-                        <textarea required minLength="10" id="description" name="description" minlength="10"></textarea>
+                        <textarea required id="description" name="description" minlength="10"></textarea>
 
                     </div>
 
                 </div>
 
-                <div class="form-card">
+                <div class="form-card required">
                     <h2>Ingredients</h2>
                     <div class="ingredients-grid">
                         <% for (let oneCateg of allIngCateg) { %>
@@ -98,16 +98,24 @@
                                 <h3>
                                     <%= oneCateg %>
                                 </h3>
-                                <% for (let oneIng of allIngredients) { %>
-                                    <% if (oneIng.category===oneCateg) { %>
-                                        <label class="ingredient-item">
-                                            <input type="checkbox" name="ingredients" value="<%= oneIng._id %>">
-                                            <span>
-                                                <%= oneIng.name %>
-                                            </span>
-                                        </label>
-                                        <% } %>
-                                            <% } %>
+
+                                <% const shownIngredients=[]; %>
+
+                                    <% for (let oneIng of allIngredients) { %>
+                                        <% if ( oneIng.category===oneCateg && !shownIngredients.includes(oneIng.name) )
+                                            { %>
+
+                                            <% shownIngredients.push(oneIng.name); %>
+
+                                                <label class="ingredient-item">
+                                                    <input type="checkbox" name="ingredients" value="<%= oneIng._id %>">
+                                                    <span>
+                                                        <%= oneIng.name %>
+                                                    </span>
+                                                </label>
+
+                                                <% } %>
+                                                    <% } %>
                             </div>
                             <% } %>
                     </div>

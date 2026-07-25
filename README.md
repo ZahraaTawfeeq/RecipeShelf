@@ -5,9 +5,20 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 
 ## Screenshots
 
-### 🏠Home Page🍽️
+### 🏠Home Page
 ![Homepage](public/images/HomePage.png)
 
+### 🍔All Recipes Page
+![All recipes page](public/images/all-recipes.png)
+
+
+### 👤Profile Page
+![profile](public/images/profile.png)
+
+
+### 💬Chat Page
+![chat history](public/images/chat-history.png)
+![chat](public/images/chat.png)
 
 ## Technologies Used
 1. HTML
@@ -16,11 +27,9 @@ Recipe Shelf is your favourite website for finding meal inspiration every day. A
 4. Node.js
 5. MongoDB
 
-## Getting Started
 
--
+## Installation
 
-OR
 1. Create folder for your project and cd into it
 
 2. Perform the following commands in the command line: 
@@ -29,7 +38,6 @@ OR
 
     `rm -rf .git`
 
-    `rm README.md`
 
 3. Create a .env file with the following 2 values of your database connection:
 
@@ -43,11 +51,12 @@ OR
 
     `npm i`
 
-## Installation
-
+    
+## Getting Started
 1. `node seed.js`
 
 2. `nodemon server.js`
+
 
 ## User Stories
 **1.** Users can sign up, log in, and log out of the website.
@@ -146,17 +155,20 @@ OR
 
 ## Future Enhancements
 
+1. **Real-Time Chat** Allow users to send and receive messages instantly without refreshing the page.
 
-1. **Responsive Design** Improve the website for mobile phones and tablets.
+2. **Responsive Design** Improve the website for mobile phones and tablets.
 
-2. **Meal Planner** Allow users to plan their weekly meals using saved recipes.
+3. **Meal Planner** Allow users to plan their weekly meals using saved recipes.
 
-3. **Shopping List** Generate a shopping list automatically from selected recipe ingredients.
+4. **Shopping List** Generate a shopping list automatically from selected recipe ingredients.
 
-4. **Recipe Recommendations** Suggest recipes based on users' favourites and browsing history.
+5. **Recipe Recommendations** Suggest recipes based on users' favourites and browsing history.
 
 
 ## Credits
-This website was developed by Zahraa.
+💻 This website was developed by Zahraa.
 
-For any recommendations or feedback, feel free to contact me via email.
+🤝 Special thanks to everyone who provided guidance, support, and valuable feedback throughout the development of this project.
+
+📧 For any recommendations or feedback, feel free to contact me via email.

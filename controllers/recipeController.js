@@ -5,7 +5,6 @@ const Recipe = require('../models/Recipe')
 const Category = require('../models/Category')
 const isSignedIn = require('../middleware/is-signed-in')
 
-// Image Upload imports
 const multer = require("multer")
 const path = require("path")
 
@@ -17,7 +16,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-// Cuisines Array
 const cuisines = [
     { name: "American" },
     { name: "Arabic" },
@@ -78,7 +76,8 @@ router.get('/new-recipe', isSignedIn, async (req, res) => {
         }
         const allCategories = await Category.find({})
         const allCuisines = cuisines
-
+        console.log(allIngCateg)
+        console.log(allIngredients)
         res.render('recipes/new-recipe.ejs', {
             allIngredients,
             allIngCateg,
@@ -134,6 +133,7 @@ router.get('/:id/edit', isSignedIn, async (req, res) => {
         res.redirect('recipes/all-recipes')
     }
 })
+
 router.get('/filter', async (req, res) => {
     try {
         const filter = {}
@@ -298,7 +298,8 @@ router.put('/:id/hidden', isSignedIn, async (req, res) => {
         res.redirect(`/recipes/recipe-details/${req.params.id}`)
     }
 })
-//--------- delete ---------//
+
+//--------- DELETE ---------//
 
 router.delete('/:id', isSignedIn, async (req, res) => {
     const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id)

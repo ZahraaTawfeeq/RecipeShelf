@@ -2,7 +2,6 @@
 @import url('./navbar.css');
 
 /* Delete Page */
-
 .container {
     width: 90%;
     max-width: 550px;
@@ -23,8 +22,6 @@
     margin-bottom: 35px;
     line-height: 1.5;
 }
-
-/* Buttons */
 
 .delete-btns {
     display: flex;
@@ -47,7 +44,6 @@
     transition: .3s;
 }
 
-/* No button */
 
 .delete-btns form:first-child button {
     background: var(--beige);
@@ -58,7 +54,6 @@
     background: #d7c0a1;
 }
 
-/* Yes button */
 
 .delete-btns form:last-child button {
     background: #c84b4b;
@@ -70,14 +65,13 @@
 }
 
 /* Add & Edit Recipe */
-
 .recipe-form-page {
     width: 90%;
     max-width: 1100px;
     margin: 40px auto;
 }
 
-.form-group.required label::after {
+.form-group.required label::after , .form-card.required h2::after {
     content: " *";
     color: red;
     font-weight: bold;
@@ -222,7 +216,7 @@
     gap: 8px;
     margin: 8px 0;
 }
-/* Prevent long text from overflowing */
+
 .form-card,
 .form-group,
 .ingredient-category,
